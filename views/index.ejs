@@ -8,11 +8,18 @@
   <title><%= title %></title>
 </head>
 <body>
-  <h1>...</h1>uh poop
+  <div class="header">
+    <h1>mhhmngh</h1>
+    <p id="blank">uh poop</p>
+</div>
+
 
   <%
-  for (let i = 0; i < users.length; i++) {
-  const currentUser = users[i];
+  const userIndexToShow = 1; // what nigga logged in
+
+  if (users.length > userIndexToShow) {
+    const currentUser = users[userIndexToShow];
+  }
 
   // Kóði sem tékkar hvort þú sért gamall eða nýr notandi // Ai skrifaði þennan kóða
   const regDate = new Date(currentUser.registeredAt); // Convert to Date object
