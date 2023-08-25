@@ -3,9 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"/>
   <title><%= title %></title>
 </head>
 <body>
+  <h1>...</h1>uh poop
+
+  <%
+  for (let i = 0; i < users.length; i++) {
+  const currentUser = users[i];
+
+  // Kóði sem tékkar hvort þú sért gamall eða nýr notandi // Ai skrifaði þennan kóða
+  const regDate = new Date(currentUser.registeredAt); // Convert to Date object
+  const cutoffDate = new Date('2023-08-25'); // Cutoff date
   
+  let genStatus;
+  
+  if (regDate < cutoffDate) {
+      genStatus = "an oldgen";
+  } else {
+      genStatus = "a newgen";
+  }
+  %>
+  
+  <% // Kóði sem breytir id í röða tölu (fyrsti, annar) // AI Skrifaði þennan
+  function getOrdinal(number) {
+      if (number % 100 >= 11 && number % 100 <= 13) {
+          return number + "th";
+      }
+      
+      switch (number % 10) {
+          case 1:
+              return number + "st";
+          case 2:
+              return number + "nd";
+          case 3:
+              return number + "rd";
+          default:
+              return number + "th";
+      }
+  }
+
+  const userOrdinal = getOrdinal(currentUser.id);
+  %>
+
+  <div class="container">
+    <p>
+      Welcome, <%= currentUser.userName %>.
+    </p>
+
+    <p>
+      The <%= userOrdinal %> user.
+    </p>
+
+    <p>
+      Last log in: <%= currentUser.lastLogin %>.
+    </p>
+
+    <p>
+      first log in: <%= currentUser.registeredAt %>.
+      You are <%= genStatus %>.
+    </p>
+  </div>
+  <% }; %>
 </body>
 </html>

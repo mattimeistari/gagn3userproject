@@ -1,0 +1,1 @@
+25.08.23 - AI hjálpaði með kóða í index.ejs

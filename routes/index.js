@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
   const title = 'Display Users';
   const users = selectUsers(dbFile);
   console.log(users);
-  res.render('index', { title });
+  res.render('index', { title, users });
 });
 
 export { router } ;
