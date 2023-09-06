@@ -15,12 +15,12 @@
 
 
   <%
-  const userIndexToShow = 1; // what nigga logged in
+  let currentUser;
+  const userIndexToShow = 0; // what fella is logged in
 
   if (users.length > userIndexToShow) {
-    const currentUser = users[userIndexToShow];
+    currentUser = users[userIndexToShow];
   }
-
   // Kóði sem tékkar hvort þú sért gamall eða nýr notandi // Ai skrifaði þennan kóða
   const regDate = new Date(currentUser.registeredAt); // Convert to Date object
   const cutoffDate = new Date('2023-08-25'); // Cutoff date
@@ -57,7 +57,7 @@
 
   <div class="container">
     <p>
-      Welcome, <%= currentUser.userName %>.
+      Welcome, <%= currentUser.username %>.
     </p>
 
     <p>
@@ -73,6 +73,6 @@
       You are <%= genStatus %>.
     </p>
   </div>
-  <% }; %>
+
 </body>
 </html>

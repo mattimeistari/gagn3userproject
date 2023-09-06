@@ -9,10 +9,30 @@ const dbFile = path.join(fileURLToPath(new URL('.', import.meta.url)), '../db/us
 
 // get index page
 router.get('/', (req, res) => {
-  const title = 'Display Users';
-  const users = selectUsers(dbFile);
-  console.log(users);
-  res.render('index', { title, users });
+
+  const isLoggedIn = true
+
+  if (!isLoggedIn) {
+    res.status(401).redirect("/login?status=loginFail");
+  } else {
+
+    const title = '💀💀💀';
+    const users = selectUsers(dbFile);
+    console.log(users);
+    
+    res.render('index', {
+      title,
+      users
+    });
+
+  }
+
 });
+
+router.post("/", (req, res) => {
+
+  
+
+})
 
 export { router } ;

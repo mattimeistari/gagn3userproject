@@ -3,6 +3,10 @@ import path from 'path';
 import colors from 'colors';
 import { fileURLToPath } from 'url';
 import { router as frontPageRouter } from './routes/index.js';
+import { router as loginPageRouter } from './routes/login.js';
+import { router as registerPageRouter } from './routes/register.js';
+import session from 'express-session'; // Import express-session
+import cookieParser from 'cookie-parser'; // Import cookie-parser
 
 const app = express();
 
@@ -22,6 +26,8 @@ app.set('view engine', 'ejs');
 
 // routers
 app.use('/', frontPageRouter);
+app.use("/login", loginPageRouter);
+app.use("/register", registerPageRouter);
 
 // errors: page not found
 app.use((req, res, next) => {
@@ -44,5 +50,15 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}...`.green.bold);
 });
+
+// Configure express-session
+app.use(cookieParser());
+app.use(
+    session({
+        secret: 'key123wowow', // Replace with a strong secret key
+        resave: false,
+        saveUninitialized: true,
+    })
+);
 
 export default app;
