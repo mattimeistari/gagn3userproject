@@ -10,43 +10,59 @@
 <body>
 
     <h1><%= header %></h1>
+    <form action="/register" method="POST" onsubmit="return validatePassword()">
+        
+        <table>
+            <tr>
+                <td><p>[ username ]</p></td>
+                <td>
+                    <input type="text" name="username" id="username" required>
+                </td>
+            </tr>
+    
+            <tr>
+                <td><p>[ email ]</p></td>
+                <td>
+                    <input type="email" name="email" id="email" required>
+                </td>
+            </tr>
+    
+            <tr>
+                <td><p>[ password ]</p></td>
+                <td>
+                    <input type="password" name="password" id="password" required>
+                </td>
+            </tr>
+    
+            <tr>
+                <td><p>[ confirm password ]</p></td>
+                <td>
+                    <input type="confirmPassword" name="confirmPassword" id="confirmPassword" required>
+                </td>
+            </tr>
+    
+            <tr>
+                <td><p>[ fn ]</p></td>
+                <td>
+                    <input type="text" name="fn" id="fn" required>
+                </td>
+            </tr>
+    
+            <tr>
+                <td><p>[ ln ]</p></td>
+                <td>
+                    <input type="text" name="ln" id="ln" required>
+                </td>
+            </tr>
+    
+            <tr aria-rowspan="2">
+                <button type="submit">
+                    attempt
+                </button>
+            </tr>
+        </table>
 
-    <table>
-        <tr>
-            <td><p>[ username ]</p></td>
-            <td>
-                <input type="text" name="username" id="">
-            </td>
-        </tr>
-
-        <tr>
-            <td><p>[ email ]</p></td>
-            <td>
-                <input type="email" name="email" id="">
-            </td>
-        </tr>
-
-        <tr>
-            <td><p>[ password ]</p></td>
-            <td>
-                <input type="password" name="password" id="">
-            </td>
-        </tr>
-
-        <tr>
-            <td><p>[ fn ]</p></td>
-            <td>
-                <input type="text" name="fn" id="">
-            </td>
-        </tr>
-
-        <tr>
-            <td><p>[ ln ]</p></td>
-            <td>
-                <input type="text" name="ln" id="">
-            </td>
-        </tr>
-    </table>
+    </form>
 
 </body>
 </html>
