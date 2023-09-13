@@ -1,12 +1,14 @@
+/* eslint-disable no-undef */
 import express from "express";
 import path from "path";
+// eslint-disable-next-line no-unused-vars
 import colors from "colors";
-import { fileURLToPath } from "url";
 import dotenv from "dotenv";
+import { fileURLToPath } from "url";
 import { router as frontRouter } from "./routes/index.js";
 import { router as loginRouter } from "./routes/login.js";
 import { router as registerRouter } from "./routes/register.js";
-import session from "express-session"; // Import express-session
+import session from "express-session";
 
 const app = express();
 dotenv.config();
@@ -30,6 +32,13 @@ app.use("/", frontRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 
+// session
+app.use(session({
+	secret: process.env.SESSION_SECRET,
+	resave: true,
+	saveUninitialized: true,
+}));
+
 // errors:  not found
 app.use((req, res, next) => {
 	const err = new Error(" not found");
@@ -38,6 +47,7 @@ app.use((req, res, next) => {
 });
 
 // error handling middleware
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
 	res.status(err.status || 500);
 	res.render("error", {

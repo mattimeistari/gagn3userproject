@@ -1,4 +1,4 @@
-import Database from 'better-sqlite3';
+import Database from "better-sqlite3";
 
 // read.js
 export const createUsers = (dbFile, email, username, firstName, lastName, password, birthdate) => {
@@ -7,4 +7,4 @@ export const createUsers = (dbFile, email, username, firstName, lastName, passwo
 	stmt.run(email, username, firstName, lastName, password, birthdate);
 	db.close();
 	return true;
-}
+};
