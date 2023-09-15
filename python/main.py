@@ -1,49 +1,31 @@
-import sqlite3
+import bcrypt
+from createConnection import createConnection
+from createUser import createUser
 
 
-# Create placeholder
-def placeholderText():
-    print("WTF!")
-    return
+def main():
+
+    # create a database connection
+    conn = createConnection("./db/users.db")
+    with conn:
+        # create a new user
+        email = input("Enter your email address: ")
+        username = input("Enter your desired username: ")
+        firstName = input("Enter your first name: ")
+        lastName = input("Enter your last name: ")
+        password = input("Enter your password: ")
+
+        # convers pass to bytes
+        bytes = password.encode("utf-8")
+
+        # salt generation
+        salt = bcrypt.gensalt()
+
+        hash = bcrypt.hashpw(bytes, salt)
+
+        user = (email, username, firstName, lastName, hash.decode())
+
+        createUser(conn, user)
 
 
-# Connect users.db
-conn = sqlite3.connect("./db/users.db")
-
-# Create a cursor object
-cursor = conn.cursor()
-
-# Prompt the user to print out the users
-print("Do you wanna print all the peopls? (Y/N)")
-choice = input("\nAnswer here:")
-
-# If the user chooses to print the users
-if choice.lower() == "y":
-    # Execute SELECT statement
-    cursor.execute(
-        "SELECT userName, firstName, lastName, email, flags "
-        "FROM users;"
-    )
-
-    # Fetch all the rows and display the names
-    rows = cursor.fetchall()
-    for row in rows:
-        print(
-            f"Name: {row[0]}, Full name: {row[1]} {row[2]}, "
-            f"Email: {row[3]} Flag value: {row[4]}\n"
-        )
-
-# If he chooses not to, run option 2, which is placeholder
-elif choice.lower() == "n":
-    placeholderText()
-
-# If user fails to inster y/n
-else:
-    print("User Failed to follow instructions")
-
-# End the forrit
-cursor.close()
-conn.close()
-
-# Closing message
-print("######## FORRIT END ########")
+main()

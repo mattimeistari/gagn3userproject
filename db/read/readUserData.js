@@ -10,6 +10,6 @@ export const readUser = (dbFile, username) => {
 		return user;
 	} catch (error) {
 		console.error("Error selecting users:", error.message);
-		return [];
+		return null; // return null instead of an empty array if no user is found
 	}
 };

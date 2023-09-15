@@ -10,16 +10,21 @@ const dbFile = path.join(fileURLToPath(new URL(".", import.meta.url)), "../db/us
 // get index page
 router.get("/", (req, res) => {
 
-	if (req.session.isLoggedIn)
+	if (req.session.isLoggedIn) {
 
-	const title = "💀💀💀";
-	const user = readUser(dbFile);
-	console.log(user.orange);
+		const title = "💀💀💀";
+
+		const user = readUser(dbFile, req.session.username); // pass the username as a second parameter
+		console.log(user.orange);
     
-	res.render("index", {
-		title,
-		user
-	});
+		res.render("index", {
+			title,
+			user
+		});
+	} else { 
+		res.redirect("/"); 
+	}
+
 });
 
-export { router } ;
+export { router };
