@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import { readUser } from "../db/read/readUserData.js";
+import { selectUsers } from "../db/read/read.js";
 
 const router = express.Router();
 
@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 
 		const title = "💀💀💀";
 
-		const user = readUser(dbFile, req.session.username); // pass the username as a second parameter
+		const user = selectUsers(dbFile);
 		console.log(user.orange);
     
 		res.render("index", {
@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
 			user
 		});
 	} else { 
-		res.redirect("/"); 
+		res.redirect("/login");
 	}
 
 });

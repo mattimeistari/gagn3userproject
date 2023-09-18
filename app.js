@@ -4,11 +4,12 @@ import path from "path";
 // eslint-disable-next-line no-unused-vars
 import colors from "colors";
 import dotenv from "dotenv";
+import session from "express-session";
 import { fileURLToPath } from "url";
 import { router as frontRouter } from "./routes/index.js";
 import { router as loginRouter } from "./routes/login.js";
 import { router as registerRouter } from "./routes/register.js";
-import session from "express-session";
+import { router as deleteRouter } from "./routes/delete.js";
 
 const app = express();
 dotenv.config();
@@ -31,6 +32,7 @@ app.set("view engine", "ejs");
 app.use("/", frontRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
+app.use("/delete", deleteRouter);
 
 // session
 app.use(session({

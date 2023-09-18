@@ -12,17 +12,9 @@
     <h1>mhhmngh</h1>
     <p id="blank">uh poop</p>
 </div>
-
-
   <%
-  let currentUser;
-  const userIndexToShow = 0; // what fella is logged in
-
-  if (users.length > userIndexToShow) {
-    currentUser = users[userIndexToShow];
-  }
   // Kóði sem tékkar hvort þú sért gamall eða nýr notandi // Ai skrifaði þennan kóða
-  const regDate = new Date(currentUser.registeredAt); // Convert to Date object
+  const regDate = new Date(user.registeredAt); // Convert to Date object
   const cutoffDate = new Date('2023-08-25'); // Cutoff date
   
   let genStatus;
@@ -52,12 +44,12 @@
       }
   }
 
-  const userOrdinal = getOrdinal(currentUser.id);
+  const userOrdinal = getOrdinal(user.id);
   %>
 
   <div class="container">
     <p>
-      Welcome, <%= currentUser.username %>.
+      Welcome, <%= user.username %>.
     </p>
 
     <p>
@@ -65,11 +57,11 @@
     </p>
 
     <p>
-      Last log in: <%= currentUser.lastLogin %>.
+      Last log in: <%= user.lastLogin %>.
     </p>
 
     <p>
-      first log in: <%= currentUser.registeredAt %>.
+      first log in: <%= user.registeredAt %>.
       You are <%= genStatus %>.
     </p>
   </div>
