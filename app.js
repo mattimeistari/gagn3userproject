@@ -28,18 +28,18 @@ app.use(express.static(staticPath));
 app.set("views", viewsPath);
 app.set("view engine", "ejs");
 
-// routers
-app.use("/", frontRouter);
-app.use("/login", loginRouter);
-app.use("/register", registerRouter);
-app.use("/delete", deleteRouter);
-
 // session
 app.use(session({
 	secret: process.env.SESSION_SECRET,
 	resave: true,
 	saveUninitialized: true,
 }));
+
+// routers
+app.use("/", frontRouter);
+app.use("/login", loginRouter);
+app.use("/register", registerRouter);
+app.use("/delete", deleteRouter);
 
 // errors:  not found
 app.use((req, res, next) => {

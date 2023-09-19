@@ -4,7 +4,7 @@ import Database from "better-sqlite3";
 export const readUser = (dbFile, username) => {
 	try {
 		const db = new Database(dbFile);
-		const stmt = db.prepare("SELECT * FROM users WHERE username = ?");
+		const stmt = db.prepare("SELECT * FROM users WHERE username = ?;");
 		const user = stmt.get(username);
 		db.close();
 		return user;

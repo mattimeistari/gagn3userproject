@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import path from "path";
 import { fileURLToPath } from "url";
 import { readUser } from "../db/read/readUserData.js";
+import { log } from "console";
 
 const router = express.Router();
 
@@ -24,6 +25,7 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
 
 	const user = readUser(dbFile, req.body.username);
+	console.log(user);
 
 	if (user) {
 		const passwordMatch = bcrypt.compareSync(req.body.password, user.password);
@@ -31,16 +33,17 @@ router.post("/", (req, res) => {
 		if (passwordMatch) {
 			req.session.user = user;
 			req.session.isLoggedIn = true;
+
 			console.log(req.session.user);
+			console.log(req.session.isLoggedIn);
+
 			res.redirect("/");
 			return;
+		} else {
+			res.redirect("/");
 		}
-
-	} else {
-		res.redirect("/");
-	}
-
-});
+		
+	}});
 
 // Export the router
 export { router };
