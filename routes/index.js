@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 		const title = "💀💀💀";
 
 		const user = selectUsers(dbFile);
-		console.log(user.orange);
+		console.log(user);
     
 		res.render("index", {
 			title,

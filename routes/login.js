@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 import path from "path";
 import { fileURLToPath } from "url";
 import { readUser } from "../db/read/readUserData.js";
-import { log } from "console";
 
 const router = express.Router();
 
@@ -34,7 +33,6 @@ router.post("/", (req, res) => {
 			req.session.user = user;
 			req.session.isLoggedIn = true;
 
-			console.log(req.session.user);
 			console.log(req.session.isLoggedIn);
 
 			res.redirect("/");

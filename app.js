@@ -43,7 +43,7 @@ app.use("/delete", deleteRouter);
 
 // errors:  not found
 app.use((req, res, next) => {
-	const err = new Error(" not found");
+	const err = new Error("not found");
 	err.status = 404;
 	next(err);
 });
